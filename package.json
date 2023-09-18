@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "mocha test/supertest.test.js",
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "author": "MEG",
   "license": "ISC",
