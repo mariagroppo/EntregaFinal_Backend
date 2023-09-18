@@ -1,0 +1,58 @@
+<div class="col mx-1 fontColor">
+        
+        <div>
+
+            {{#if productsExists}}
+            <h4 class="p-3 fw-bold">Detalle de producto</h4>
+                <div class="container-fluid">
+                    <table class="table">
+                        <thead class="fontColor">
+                            <tr class="text-center">
+                                <th>ID</th>
+                                <th>Nombre del producto</th>
+                                <th>Descripción</th>
+                                <th>Código</th>
+                                <th>Imagen</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                            </tr>
+                        </thead>
+
+                        <tr class="text-center align-middle fontColor">
+                            <td>
+                                {{this.prod.id}}
+                            </td>
+                            <td>
+                                {{prod.title}}
+                            </td>
+                            <td>
+                                {{prod.description}}
+                            </td>
+                            <td>
+                                {{prod.code}}
+                            </td>
+                            <td>
+                                <img class="rounded mx-auto d-block" src={{prod.thumbnail}}>
+                            </td>
+                            <td>
+                                {{prod.price}}
+                            </td>
+                            <td>
+                                {{prod.stock}}
+                            </td>
+                        </tr>
+                        
+                    </table>
+                </div>
+            {{else}}
+                <div class="container-fluid">
+                    <h4 class="alert alert-danger">No se encontró el producto</h4>
+                </div>
+            {{/if}}
+        </div>
+        <div class="col-2">
+            <a href="/products"><button type="button" class="btn btn-light">Volver al listado</button></a>
+        </div>
+</div>
+    
+    

@@ -1,0 +1,29 @@
+<div class="container-fluid my-5 p-3 bg-warning">
+    <h1 class="m-3">Reestablecé tu contraseña</h1>
+
+    <div class="container-fluid">
+        
+        <form class="row g-3" action="/restorePassword" method="post">
+            <div>
+                <div class="col-md-6">
+                    <label for="userEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="userEmail">
+                </div>
+                <div class="col-md-6">
+                    <label for="newPassword" class="form-label">Nueva Password</label>
+                    <input type="password" class="form-control" name="newPassword">
+                </div>
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Update password</button>
+            </div>
+
+            <hr>
+            <div class="text-center">
+                <p>¿Necesitas una cuenta? <a href="/register">Regístrate!</a> </p>
+                <p>O vuelve al inicio. <a href="/products">Inicio</a></p>
+                
+            </div>
+        </form>
+    </div>
+</div>

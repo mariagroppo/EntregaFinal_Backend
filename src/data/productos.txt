@@ -1,0 +1,91 @@
+[
+  {
+    "id": 1,
+    "title": "Producto Zarasero",
+    "description": "Descripcion p1",
+    "price": "200",
+    "thumbnail": "https://fastly.picsum.photos/id/1012/200/200.jpg?hmac=kENwT0f1ecqbPzBGAw3ITKIrm1xoJdF0oh5tq6nosuM",
+    "code": "abc123",
+    "stock": "25",
+    "category": "Categoria 1"
+  },
+  {
+    "id": 2,
+    "title": "Titulo nuevo producto 2",
+    "description": "Descripcion del nuevo producto 2.",
+    "price": 1200,
+    "thumbnail": "https://fastly.picsum.photos/id/166/200/200.jpg?hmac=lghN9aMZHsvaZQVmJW3_fCu5ArnsnX8kJwM87m9K9dY",
+    "code": "abc1234",
+    "stock": 350,
+    "category": "Categoria 1"
+  },
+  {
+    "id": 4,
+    "title": "Titulo nuevo producto 4",
+    "description": "Descripcion del nuevo producto 4.",
+    "price": 1400,
+    "thumbnail": "https://fastly.picsum.photos/id/447/200/200.jpg?hmac=CwQWs2SxtAz87GyTTmC1s4okk4869xQiZAfx7rPW0FM",
+    "code": "abc124",
+    "stock": 350,
+    "category": "Categoria 1"
+  },
+  {
+    "id": 7,
+    "title": "Titulo nuevo producto 7",
+    "description": "Descripcion del nuevo producto 7.",
+    "price": 1700,
+    "thumbnail": "https://fastly.picsum.photos/id/206/200/200.jpg?hmac=4sOfaJaxYl_SjIfzFMVrIqIi3bdvwGke2r0MBg7Q1i8",
+    "code": "abc127",
+    "stock": 350,
+    "category": "Categoria 3"
+  },
+  {
+    "id": 8,
+    "title": "Titulo nuevo producto 8",
+    "description": "Descripcion del nuevo producto 8.",
+    "price": 1800,
+    "thumbnail": "https://fastly.picsum.photos/id/549/200/200.jpg?hmac=8HshVdK-H52hgb-zHj3AefpzafjOnwnqSPzsd0oFoDQ",
+    "code": "abc128",
+    "stock": 350,
+    "category": "Categoria 5"
+  },
+  {
+    "id": 9,
+    "title": "Titulo nuevo producto 9",
+    "description": "Descripcion del nuevo producto 9.",
+    "price": 1900,
+    "thumbnail": "https://fastly.picsum.photos/id/853/200/200.jpg?hmac=f4LF-tVBBnJb9PQAVEO8GCTGWgLUnxQLw44rUofE6mQ",
+    "code": "abc129",
+    "stock": 350,
+    "category": "Categoria 1"
+  },
+  {
+    "id": 10,
+    "title": "Titulo nuevo producto 10",
+    "description": "Descripcion del nuevo producto 10.",
+    "price": 1100,
+    "thumbnail": "https://fastly.picsum.photos/id/937/200/200.jpg?hmac=8ePB28CQ2kANO2nsqXZ4GA-tQ6YTCG1MgZBnDsimIdQ",
+    "code": "abc1210",
+    "stock": 350,
+    "category": "Categoria 1"
+  },
+  {
+    "id": 12,
+    "title": "Titulo nuevo producto 12",
+    "description": "Descripcion del nuevo producto 12.",
+    "price": 11200,
+    "thumbnail": "https://fastly.picsum.photos/id/660/200/200.jpg?hmac=5UOdBCKDcPq_zS0RAVkvSD934EYVyCEdExCagJur-g8",
+    "code": "abc1212",
+    "stock": 350,
+    "category": "Categoria 3"
+  },
+  {
+    "id": 16,
+    "title": "prod 2256",
+    "description": "Descripcion del producto 3",
+    "price": "67",
+    "thumbnail": "https://fastly.picsum.photos/id/513/200/200.jpg?hmac=xMRZhdrttvlfIvOf0Qm9J4texbmA0HS2pBNVM-Pho-U",
+    "code": "cod 2256",
+    "stock": "6"
+  }
+]

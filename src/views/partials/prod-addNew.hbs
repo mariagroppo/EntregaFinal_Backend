@@ -1,0 +1,48 @@
+    <div class="container-fluid tipografia">
+        <div class="row">
+            
+            <div class="col border border-dark mx-1 filaDeTabla">
+                <h4 class="my-2 fw-bold text-center textColor">Ingrese un producto nuevo</h4>
+                <form class="m-1" action="/products/mine/add" method="post" id="formNewProduct">
+                    <div class="mb-3">
+                        <label for="title" class="form-label textColor">Nombre del producto</label>
+                        <input type="text" class="form-control" name="title" id="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label textColor">Descripción</label>
+                        <input type="text" class="form-control" name="description" id="description">
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label textColor">Código</label>
+                        <input type="text" class="form-control" name="code" id="code">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ruta" class="form-label textColor">URL Imagen</label>
+                        <input type="text" class="form-control" name="thumbnail" id="thumbnail">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label textColor">Precio</label>
+                        <input type="number" class="form-control" name="price" id="price">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label textColor">Stock</label>
+                        <input type="number" class="form-control" name="stock" id="stock">
+                    </div>
+
+                    <div class="form-floating">
+                        <select name="category" id="category" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                            <option selected>Seleccionar...</option>
+                            <option value="1">Categoria 1</option>
+                            <option value="2">Categoria 2</option>
+                            <option value="3">Categoria 3</option>
+                            <option value="3">Categoria 4</option>
+                        </select>
+                        <label for="category" class="form-label">Categoria</label>
+
+                    </div>
+                    <button type="submit" class="btn btn-warning my-2">Agregar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+

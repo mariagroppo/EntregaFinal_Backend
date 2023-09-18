@@ -1,0 +1,19 @@
+<main>
+
+    <div class="col">
+        <div class="row">
+            <div class="row">
+                <label class="textColor">Ingrese su mensaje:</label>
+                <div class="d-flex">
+                    <input type="text" class="chatbox m-2" id="chatbox">
+                    <button class="sendButton" id="sendButton">OK</button>
+                </div>
+            </div>
+        </div>
+        <div class="m-2 textColor chatSpace bg-secondary" id="logs" data-bs-spy="scroll"></div>
+
+    </div>
+        
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/chat.js"></script>

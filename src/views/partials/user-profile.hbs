@@ -1,0 +1,77 @@
+<div class="tipografia">
+    
+    <h3 class="p-3 fw-bold fontColor">PERFIL DEL USUARIO</h3>
+
+    <div class="container-fluid fontColor">
+        <div>
+            <table class="table">
+                <thead class="">
+                    <tr class="text-center fontColor">
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Procedure Status</th>
+                        <th>DNI</th>
+                        <th>Comprobante 1</th>
+                        <th>Comprobante 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-center align-middle fontColor">
+                        <td>
+                            {{user._id}}
+                        </td>
+                        <td>
+                            {{user.first_name}}
+                        </td>
+                        <td>
+                            {{user.last_name}}
+                        </td>
+                        <td>
+                            {{user.userEmail}}
+                        </td>
+                        <td>
+                            {{user.role}}
+                        </td>
+                        <td>
+                            {{user.procedureStatus}}
+                        </td>
+                        <td>
+                            {{user.DNI}}
+                        </td>
+                        <td>
+                            {{user.comprobante1}}
+                        </td>
+                        <td>
+                            {{user.comprobante2}}
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>             
+        </div>
+    </div>
+
+
+</div>
+
+{{#if change}}
+<div>
+    <form class="container" action="/users/documents" method="get">
+        <button type="submit" class="btn btn-danger m-2 col">Pasar a PREMIUM</button>
+    </form>
+</div>
+{{/if}}
+
+<div class="tipografia">
+    <h3 class="p-3 fw-bold fontColor">CAMBIA TU FOTO DE PERFIL</h3>
+    <form class="container" action="current/uploadImage" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input class="textColor container" type="file" name="image">
+        </div>
+        <button type="submit" class="btn btn-primary m-2 col">Cargar</button>
+</form>
+
+</div>

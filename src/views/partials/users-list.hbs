@@ -1,0 +1,101 @@
+<div class="tipografia">
+    
+    <h3 class="p-3 fw-bold fontColor">LISTADO DE USUARIOS</h3>
+
+    <div class="container-fluid fontColor">
+        {{#if uExist}}
+            <div>
+            
+                <table class="table">
+                    <thead class="">
+                        <tr class="text-center fontColor">
+                            <th>Nombre y apellido</th>
+                            <th>Email</th>
+                            <th>Rol</th>
+                            <th>Change Status</th>
+                            <th>DNI Status</th>
+                            <th>Domicilio Status</th>
+                            <th>Cuenta Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each users}}  
+                            <tr class="text-center align-middle fontColor">
+                                <td>
+                                    {{this.name}}
+                                </td>
+                                <td class="col1 groupButtons">
+                                    {{this.email}}
+                                </td>
+                                <td>
+                                    {{this.role}}
+                                    {{#if this.premium}}
+                                    <div>
+                                        <form class="container" action="/backToUser/{{this.id}}" method="post">
+                                            <button type="submit" class="btn btn-danger m-2 col">Back to "user"</button>
+                                        </form>
+                                    </div>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    {{this.procedureStatus}}
+                                    {{#if this.notPremium}}
+                                        <div class="">
+                                            <form class="" action="/premium/{{this.id}}" method="post">
+                                                <button type="submit" class="btn btn-danger m-2 col">Upload Premium</button>
+                                            </form>
+                                        </div>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    {{this.DNI}}
+                                    {{#if this.notDNI}}
+                                        <div class="">
+                                            <form class="" action="/premium/DNI/{{this.id}}" method="post">
+                                                <button type="submit" class="btn btn-warning m-2 col">DNI OK</button>
+                                            </form>
+                                        </div>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    {{this.comp1}}
+                                    {{#if this.notComp1}}
+                                        <div class="">
+                                            <form class="" action="/premium/comp1/{{this.id}}" method="post">
+                                                <button type="submit" class="btn btn-success m-2 col">Domicilio OK</button>
+                                            </form>
+                                        </div>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    {{this.comp2}}
+                                    {{#if this.notComp2}}
+                                        <div class="">
+                                            <form class="" action="/premium/comp2/{{this.id}}" method="post">
+                                                <button type="submit" class="btn btn-primary m-2 col">Estado de cuenta OK</button>
+                                            </form>
+                                        </div>
+                                    {{/if}}
+                                </td>
+                                <td>
+                                    <div>
+                                        <form class="container" action="/delete/{{this.id}}" method="post">
+                                            <button type="submit" class="btn btn-danger m-2 col">X</button>
+                                        </form>
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>             
+            </div>
+           
+        {{else}}
+            <div class="container-fluid">
+                <h4 class="alert alert-danger">{{message}}</h4>
+            </div> 
+        {{/if}}
+    </div>
+</div>

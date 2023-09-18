@@ -1,0 +1,40 @@
+
+<div class="tipografia">
+    
+    <h3 class="p-3 fw-bold fontColor">LISTADO DE ÚLTIMAS CONEXIONES</h3>
+
+    <div>
+        <form class="container" action="/users/delete" method="post">
+            <button type="submit" class="btn btn-danger m-2 col">Borrar usuarios con última conexión mayor a 10 días</button>
+        </form>
+    </div>
+
+    <div class="container-fluid fontColor">
+        {{#if uExist}}
+            <div>
+            
+                <table class="table">
+                    <thead class="">
+                        <tr class="text-center fontColor">
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each users}}  
+                            <tr class="text-center align-middle fontColor">
+                                <td>
+                                    {{this}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>             
+            </div>
+           
+        {{else}}
+            <div class="container-fluid">
+                <h4 class="alert alert-danger">{{message}}</h4>
+            </div> 
+        {{/if}}
+    </div>
+</div>

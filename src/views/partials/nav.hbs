@@ -1,0 +1,57 @@
+<div class="my-3 row">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand textColor" href="/">TV</a>
+            {{#if userStatus}}
+            <button class="navbar-toggler bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link textColor" aria-current="page" href="/api/personal">Perfil</a>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link textColor" aria-current="page" href="/products">Productos</a>
+                    </li>
+                    {{#if myProducts}}
+                    <li class="nav-item">
+                        <a class="nav-link textColor" aria-current="page" href="/products/mine">Mis productos</a>
+                    </li>
+                    {{/if}}
+                    <li class="nav-item">
+                        <a class="nav-link textColor" href="/carts">Mis carritos</a>
+                    </li>
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link textColor" href="/realtimeproducts">Real Time products</a>
+                    </li> --}}
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link textColor" href="/chat">Chat</a>
+                    </li> --}}
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link textColor" href="/faker">Faker-js</a>
+                    </li> --}}
+                    {{#if enabled}}
+                    <li class="nav-item">
+                        <a class="nav-link textColor" href="/users">Listado Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link textColor" href="/users/lastConnection">Listado Last Connection</a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+            {{/if}}
+            {{#if userStatus}}
+            <div>
+                <button class="btn btn-outline-dark disabled bg-light mx-2" type="submit" id="userName"> Bienvenid@ {{userName}}</button>
+                <a href="/current"><img class="imgPerfil" src="/docs/profiles/{{email}}.jpg" alt="/docs/profiles/{{email}}.jpg"></a>
+                <a class="btn btn-outline-dark bg-success mx-2" aria-current="page" href="/logout">Desloguearse</a>
+            {{else}}
+                <a class="btn btn-outline-dark bg-success mx-2" aria-current="page" href="/register">Registrarse</a>
+                <a class="btn btn-outline-dark bg-success mx-2" aria-current="page" href="/login">Ingresar</a>
+            {{/if}}
+            </div>
+        </div>
+    </nav>
+</div>

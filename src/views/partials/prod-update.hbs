@@ -1,0 +1,50 @@
+    <div class="container-fluid fontColor">
+        <div class="row">
+            
+            <div class="col border border-dark mx-1 fontColor">
+                <h4 class="my-2 fw-bold text-center">Actualice datos del producto</h4>
+                <form class="m-1" action="/products/mine/update/{{prod.id}}" method="post" id="formNewProduct">
+                    {{!-- <label for="">{{prod.title}}</label> --}}
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Nombre del producto</label>
+                        <input type="text" class="form-control" name="title" id="title" value={{prod.title}}>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" name="description" id="description" value={{prod.description}}>
+                    </div>
+                    {{!-- <div class="mb-3">
+                        <label for="title" class="form-label">Código</label>
+                        <input type="text" class="form-control" name="code" id="code" value={{prod.code}}>
+                    </div> --}}
+                    <div class="mb-3">
+                        <label for="ruta" class="form-label">URL Imagen</label>
+                        <input type="text" class="form-control" name="thumbnail" id="thumbnail" value={{prod.thumbnail}}>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Precio</label>
+                        <input type="number" class="form-control" name="price" id="price" value={{prod.price}}>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Stock</label>
+                        <input type="number" class="form-control" name="stock" id="stock" value={{prod.stock}}>
+                    </div>
+
+                    <div class="form-floating">
+                        <select name="category" id="category" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                            <option selected>{{prod.category}}</option>
+                            <option value="1">Categoria 1</option>
+                            <option value="2">Categoria 2</option>
+                            <option value="3">Categoria 3</option>
+                            <option value="3">Categoria 4</option>
+                        </select>
+                        <label for="category" class="form-label">Categoria</label>
+
+                    </div>
+                    <button type="submit" class="btn btn-warning my-2">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <a href="/products"><button type="button" class="btn btn-light">Volver</button></a>
+

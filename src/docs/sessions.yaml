@@ -1,0 +1,272 @@
+paths:
+  /api/sessions/register:
+    get:
+      summary: Indica los campos a completar para registrarse.
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: "Página cargada correctamente."
+          content:
+            Mensaje.
+        "500":
+          description: "Error al realizar la petición."
+          content:
+            Mensaje.
+    post:
+      summary: Realiza el registro de un nuevo usuario.
+      tags:
+        - Sessions
+      requestBody:
+        description: Datos del nuevo usuario
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewUser'
+      responses:
+        "200":
+          description: "El usuario fue creado satisfactoriamente"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: "Algún error en los datos provistos."
+        "500":
+          description: "Error interno del servidor"
+  
+  /api/sessions/register/registerFail:
+    get:
+      summary: Muestra el error del proceso de registro.
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: "Mensaje emitido correctamente."
+          content:
+            Mensaje.
+        "500":
+          description: "Error al realizar la petición."
+          content:
+            Mensaje.
+  
+  /api/sessions/login:
+    get:
+      summary: Indica los campos a completar para loguearse.
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: "User logueado correctamente."
+          content:
+            Mensaje.
+        "500":
+          description: "Error al realizar la petición."
+          content:
+            Mensaje.
+    post:
+      summary: Realiza el login del usuario.
+      tags:
+        - Sessions
+      requestBody:
+        description: Datos del usuario
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/User'
+      responses:
+        "200":
+          description: "El usuario fue logueado satisfactoriamente"
+        "400":
+          description: "Algún error en los datos provistos."
+        "500":
+          description: "Error interno del servidor"
+  
+  /api/sessions/login/loginFail:
+    get:
+      summary: Muestra el error del proceso de registro.
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: "Mensaje emitido correctamente."
+          content:
+            Mensaje.
+        "500":
+          description: "Error al realizar la petición."
+          content:
+            Mensaje.
+
+  /api/sessions/logout:
+    get:
+      summary: Cierra la sesion abierta.
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: "Sesión cerrada correctamente."
+          content:
+            Mensaje.
+        "500":
+          description: "Error al realizar la petición."
+          content:
+            Mensaje.
+
+  /api/sessions/current:
+    get:
+      summary: Muestra los datos del usuario.
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: "El usuario se muestra correctamente."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSession'
+        
+        "500":
+          description: "Error al realizar la petición."
+          content:
+            Mensaje.
+
+  /api/sessions/current/changePwd:
+    get:
+      summary: Indica los campos a completar para cambiar la contraseña (si el usuario está logueado).
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: "Mensaje mostrado correctamente."
+          content:
+            Mensaje.
+        "500":
+          description: "Error al realizar la petición."
+          content:
+            Mensaje.
+    post:
+      summary: Realiza el cambio de contraseña.
+      tags:
+        - Sessions
+      requestBody:
+        description: Contraseña actual y la nueva.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/passwords'
+      responses:
+        "200":
+          description: "La constraseña se actualizó correctamente."
+        "400":
+          description: "Error en los datos provistos."
+        "500":
+          description: "Error interno del servidor"
+  /api/sessions/restorePwd:
+    get:
+      summary: Pide el correo electrónico con el cual el usuario se encuentra registrado para enviarle el correo con link para cambiar la contraseña.
+      tags:
+        - Sessions
+      responses:
+        "200":
+          description: "Mensaje mostrado correctamente."
+          content:
+            Mensaje.
+        "500":
+          description: "Error al realizar la petición."
+          content:
+            Mensaje.
+
+components:
+  schemas:
+    User:
+      description: Datos del usuario
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              first_name:
+                type: string
+                description: Nombre del usuario.
+              last_name:
+                type: string
+                description: Apellido del usuario.
+              userEmail:
+                type: string
+                description: Correo del usuario (único y distinto al de admin)
+              hashedPassword:
+                type: string
+                description: Contraseña hasheada.
+              role:
+                type: string
+                description: rol del usuario. Por defecto "user".
+    UserSession:
+      description: Datos del usuario
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+                description: _id del usuario.
+              name:
+                type: string
+                description: Nombre y apellido del usuario.
+              userEmail:
+                type: string
+                description: Correo del usuario (único y distinto al de admin)
+              role:
+                type: string
+                description: rol del usuario. Por defecto "user".
+
+  requestBodies:
+    NewUser:
+      description: Datos del nuevo usuario
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              first_name:
+                type: string
+                description: Nombre del usuario.
+              last_name:
+                type: string
+                description: Apellido del usuario.
+              userEmail:
+                type: string
+                description: Correo del usuario (único y distinto al de admin)
+              inputPassword:
+                type: string
+                description: Contraseña (Luego se realiza el hasheo).
+    User:
+      description: Datos del usuario para loguearse
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              userEmail:
+                type: string
+                description: Correo del usuario
+              inputPassword:
+                type: string
+                description: Contraseña
+    passwords:
+      description: Cambio de contraseña estando logueado.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              actualPassword:
+                type: string
+                description: Contraseña actual
+              newPassword:
+                type: string
+                description: Nueva contraseña
+              

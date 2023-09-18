@@ -1,0 +1,46 @@
+<main>
+        
+        <div class="row">
+            
+            <div class="col border border-dark m-3 newProductContainer">
+                <h4 class="my-2 fw-bold text-center textColor">Ingrese un producto nuevo</h4>
+                <form class="m-1" method="post" id="formNewProduct">
+                    <div class="row g-3 mt-1">
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="title" id="title" placeholder="Nombre del producto">
+                        </div>
+                        <div class="col-sm">
+                            <input type="text" class="form-control" name="code" id="code" placeholder="Código del producto">
+                        </div>
+                        <div class="col-sm">
+                            <input type="number" class="form-control" name="price" id="price" placeholder="Precio">
+                        </div>
+                        <div class="col-sm">
+                             <input type="text" class="form-control" name="category" id="category" placeholder="Categoria">
+                        </div>
+                    </div>
+                    <div class="row g-3 mt-1">
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control" name="description" id="description" placeholder="Descipción">
+                        </div>
+                        <div class="col-sm">
+                            <input type="number" class="form-control" name="stock" id="stock" placeholder="Stock">
+                        </div>
+                    </div>
+                    <div class="row g-3 mt-1 mb-1">
+                        <div class="col-sm">
+                             <input type="text" class="form-control" name="thumbnail" id="thumbnail" placeholder="Link a imagen">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn addButtonStyle m-3">Agregar producto</button>
+                </form>
+            </div>
+            <div id="productsContainer" class="d-flex flex-wrap justify-content-around"></div>
+            <div class="d-flex" id="containerButtonsPages"></div>
+        </div>
+
+        
+    </div>
+</main>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/index.js"></script>

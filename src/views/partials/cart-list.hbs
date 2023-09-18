@@ -1,0 +1,62 @@
+<a href="/carts/add" class="btn btn-primary" role="button">Nuevo carrito</a>
+
+<div>
+
+    {{#if cartsExists}}
+    <h4 class="p-3 fw-bold fontColor">Lista de carritos</h4>
+        <div class="container-fluid fontColor">
+            <table class="table">
+                <thead class="">
+                    <tr class="text-center fontColor">
+                        <th>ID</th>
+                        <th>Productos</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                {{#each carts}}  
+                    <tr class="text-center align-middle fontColor">
+                        <td>
+                            {{this.idCart}}
+                        </td>
+                        <td>
+                            {{#each this.products}}
+                                {{this.quantity}} x ID: {{this._id.id}} <br>
+                            {{/each}}
+                        </td>
+                        <td>
+                            {{#if this.cartStatus}}
+                            Open
+                            {{else}}
+                            Close
+                            {{/if}}
+                        </td>
+                        <td>
+                            {{#if this.cartStatus}}
+                            <div class="col-2">
+                                <form class="container" action="/carts/delete/{{this.idCart}}" method="post">
+                                    <input type="hidden" name="idCart" value={{this.id}}>
+                                    <button type="submit" class="btn btn-danger m-2 col">X</button>
+                                </form>
+                            </div>
+
+                            <div class="col-2">
+                                <form class="container" action="/carts/{{this.idCart}}" method="get">
+                                    <input type="hidden" name="idCart" value={{this.idCart}}>
+                                    <button type="submit" class="btn btn-warning m-2 col">Ver</button>
+                                </form>
+                            </div>
+                            {{/if}}
+                        </td>
+                        
+                    </tr>
+                {{/each}}
+            </table>
+        </div>
+    {{else}}
+        <div class="container-fluid mt-3">
+            <h4 class="alert alert-danger">Usted no posee un historial de carritos.</h4>
+        </div>
+    {{/if}}
+</div>

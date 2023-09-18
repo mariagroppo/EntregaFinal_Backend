@@ -1,0 +1,102 @@
+<div class="tipografia">
+    <div class="container">
+        <div class="col-4 fw-bold fs-3 fontColor">
+            CARRITO N°: {{cart.idCart}}
+        </div>
+    </div>
+    
+    <h3 class="p-3 fw-bold fontColor">PRODUCTOS</h3>
+
+    <div class="container-fluid fontColor">
+        {{#if pExist}}
+            <div>
+            
+                <table class="table">
+                    <thead class="">
+                        <tr class="text-center fontColor">
+                            <th class="col1">ID Producto</th>
+                            <th class="col1">Cantidad</th>
+                            <th>Nombre del producto</th>
+                            <th>Descripción</th>
+                            <th>Código</th>
+                            <th>Imagen</th>
+                            <th class="col1">Precio unitario</th>
+                            <th class="col1"></th>    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each cart.products}}  
+                            <tr class="text-center align-middle fontColor">
+                                <td class="col1">
+                                    <input type="hidden" name={{this._id.id}} value={{this._id.id}}>
+                                    {{this._id.id}}
+                                </td>
+                                <input type="hidden" class="productQtyInput2" id={{this._id.id}} value={{this.quantity}}>
+                                <td class="col1 groupButtons">
+                                    <form class="container" action="/carts/update/{{../cart.idCart}}" method="post">
+                                        <button type="button" id="btnRest2" name={{this._id.id}} class="btn col btnRest">-</button>
+                                        <input class="productQtyInput2" name={{this._id.id}} id={{this._id.id}} value={{this.quantity}}>
+                                        <button type="button" id="btnSum2" name={{this._id.id}} class="btn col btnSum">+</button>
+                                        <span class="">Stock disponible: {{this._id.stock}}</span>
+                                        <button type="submit" class="btn btn-primary m-2 col">Update</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    {{this._id.title}}
+                                </td>
+                                <td>
+                                    {{this._id.description}}
+                                </td>
+                                <td>
+                                    {{this._id.code}}
+                                </td>
+                                <td>
+                                    <img class="rounded mx-auto d-block imagenProducto" src={{this._id.thumbnail}}>
+                                </td>
+                                <td class="col1">
+                                    {{this._id.price}}
+                                </td>
+                                <td class="col1">
+                                    <div>
+                                        <form class="container" action="/carts/delete/{{../cart.idCart}}/product/{{this._id.id}}" method="post">
+                                            <input type="hidden" name="idCart" value={{../cart.idCart}}>
+                                            <button type="submit" class="btn btn-danger m-2 col">X</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+
+            
+
+            </div>
+            
+
+            <div class="col-2">
+                <form class="container" action="/closeCart/{{cart.idCart}}" method="post">
+                    <button type="submit" class="btn col btn-primary m-2">Comprar</button>
+                </form>
+            </div>
+            
+        {{else}}
+            <div class="container-fluid">
+                <h4 class="alert alert-danger">No hay productos</h4>
+            </div> 
+        {{/if}}
+    </div>
+</div>
+
+<div>
+    <a href="/carts"><button class="btn btn-success m-2 col">Volver</button></a>
+</div>
+
+{{#if messageStock}}
+    <p class="fontColor">Los siguientes productos no cuentan con la cantidad requerida.</p>
+    {{#each prodsWithoutStock}}
+        <p class="fontColor">{{this.id}} - {{this.title}}</p><br>
+    {{/each}}
+    <p class="fontColor">Por favor, actualice las cantidades o bien elimine productos.</p>
+{{/if}}
+<script src="/js/updateCart.js"></script> 

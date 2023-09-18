@@ -1,0 +1,177 @@
+paths:
+  /api/carts:
+    get:
+      summary: Obtiene todos los carritos del usuario logueado.
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: "Los carritos del usuario fueron obtenidos satisfactoriamente"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cart'
+        "500":
+          description: "Error interno del servidor"
+    post:
+      summary: Crea un nuevo carrito, siempre y cuando no haya uno abierto.
+      tags:
+        - Carts
+      responses:
+        "200":
+          description: "El carrito fue creado satisfactoriamente"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        "400":
+          description: "Error porque hay otro carrito abierto."
+        "500":
+          description: "Error interno del servidor"
+
+  /api/carts/{cid}:
+    get:
+      summary: Obtiene un carrito basado en su CID.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: ID único del carrito (es el id creado para el usuario, no el _id de mongo).
+          required: true
+          schema:
+            type: string
+            
+      responses:
+        "200":
+          description: "El carrito fue obtenido satisfactoriamente"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        "400":
+          description: "Carrito no encontrado o bien el cid es erróneo."
+        "500":
+          description: "Error interno del servidor"
+
+    delete:
+      summary: Elimina un carrito basado en su CID.
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: ID único del carrito.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "El carrito fue eliminado satisfactoriamente"
+        "400":
+          description: "Carrito no encontrado o no pertenece al usuario."
+        "500":
+          description: "Error interno del servidor"
+
+  /api/carts/{cid}/product/{pid}:
+    post:
+      summary: Coloca la cantidad de un producto en el carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: ID único del carrito.
+          required: true
+          schema:
+            type: string
+            
+        - name: pid
+          in: path
+          description: ID único del producto.
+          required: true
+          schema:
+            type: string
+            
+      requestBody:
+        description: Cantidad del producto a agregar
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                quantity:
+                  type: number
+                  description: Cantidad del producto
+      responses:
+        "200":
+          description: "El producto fue agregado satisfactoriamente en el carrito"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+        "400":
+          description: "Solicitud incorrecta"
+        "500":
+          description: "Error interno del servidor"
+    
+    
+  /api/carts/closeCart/{cid}:
+    post:
+      summary: Verifica el stock y realiza el cierre del carrito
+      tags:
+        - Carts
+      parameters:
+        - name: cid
+          in: path
+          description: ID único del carrito.
+          required: true
+          schema:
+            type: string
+            
+      responses:
+        "200":
+          description: "Compra realizada satisfactoriamente"
+        "400":
+          description: "Solicitud incorrecta (ej. stock insuficiente)"
+        "500":
+          description: "Error interno del servidor"
+
+components:
+  schemas:
+    Cart:
+      type: object
+      properties:
+        _id:
+          type: string
+          format: ObjectId
+          description: _id del carrito
+        idCart:
+          type: number
+          description: ID del carrito
+        timestamps:
+          type: string
+          description: Correspondiente a la creación del mismo.
+        cartStatus:
+          type: boolean
+          description: Indica si el carrito esta abierto (true) o cerrado (false).
+        user:
+          type: string
+          format: ObjectId
+          description: ID del usuario
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              _id:
+                type: string
+                format: ObjectId
+                description: ID del producto
+              quantity:
+                type: number
+                description: Cantidad del producto en el carrito
+

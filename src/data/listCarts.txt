@@ -1,0 +1,25 @@
+[
+  {
+    "idCart": 3,
+    "timestamp": 1683981154410,
+    "products": [
+      {
+        "id": 1,
+        "quantity": 4
+      },
+      {
+        "id": 4,
+        "quantity": 4
+      },
+      {
+        "id": 7,
+        "quantity": 11
+      }
+    ]
+  },
+  {
+    "idCart": 4,
+    "timestamp": 1683981408154,
+    "products": []
+  }
+]

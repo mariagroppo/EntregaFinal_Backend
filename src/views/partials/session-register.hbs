@@ -1,0 +1,40 @@
+<div class="container-fluid my-5 p-3 bg-warning">
+    <h1 class="m-3">Registro de nuevo usuario</h1>
+
+    <div class="container-fluid">
+        
+        {{!-- <form class="row g-3" id="registerForm"> --}}
+        <form class="row g-3" action="/register" method="post">
+            <div>
+                <div class="col-md-6">
+                    <label for="first_name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="first_name">
+                </div>
+                <div class="col-md-6">
+                    <label for="last_name" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" name="last_name">
+                </div>
+                <div class="col-md-6">
+                    <label for="userEmail" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="userEmail">
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="inputPassword">
+                </div>
+
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Registrarme</button>
+            </div>
+
+            <hr>
+            <div class="text-center">
+                <p>¿Ya posees una cuenta? <a href="/login">Login</a></p>
+                <p>O vuelve al inicio. <a href="/">Inicio</a></p>
+                
+            </div>
+        </form>
+    </div>
+{{!-- <script src="/js/sessions.js"></script> --}}
+</div>

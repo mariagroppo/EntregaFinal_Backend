@@ -1,0 +1,31 @@
+<h4 class="p-3 fw-bold fontColor">Ticket de compra</h4>
+
+<div class="ticket">
+  <div class="stub">
+    <div class="top">
+      <span class="admit">TICKET</span>
+      <span class="line"></span>
+    </div>
+    <span class="num">{{value.codeTicket}}</span>
+    
+  </div>
+  <div class="check">
+    <div class="big">
+      Purchase done.
+    </div>
+    
+    <div class="info">
+      <section class="mx-3">
+        <div class="title">Timestamp</div>
+        <div>{{value.timestamp}}</div>
+      </section>    
+      <section class="mx-3">
+        <div class="title">Amount</div>
+        <div>${{value.amount}}</div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<p class="fontColor">El detalle de compra se ha enviado por correo electrónico.</p>

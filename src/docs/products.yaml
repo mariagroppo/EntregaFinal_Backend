@@ -1,0 +1,231 @@
+paths:
+  /api/products:
+    get:
+      summary: Muestra todos los productos a excepción de los del usuario logueado.
+      tags:
+        - Products
+      responses:
+        "200":
+          description: "Los productos fueron obtenidos satisfactoriamente de la base de datos."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        "500":
+          description: "Error interno del servidor"
+ 
+  /api/products/mine:
+    get:
+      summary: Muestra todos los productos del usuario logueado.
+      tags:
+        - Products
+      responses:
+        "200":
+          description: "Los productos fueron obtenidos satisfactoriamente de la base de datos."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        "500":
+          description: "Error interno del servidor"
+
+  /api/products/add:
+    get:
+      summary: Indica los campos que se deben completar para cargar un producto nuevo.
+      tags:
+        - Products
+      responses:
+        "200":
+          description: "Mensaje aparece correctamente."
+        "500":
+          description: "Error interno del servidor"
+
+    post:
+      summary: Crea un nuevo producto. Esto puede realizarlo cada usuario y el admin.
+      tags:
+        - Products
+      requestBody:
+        description: Datos del nuevo producto
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/NewProduct'
+      responses:
+        "200":
+          description: "El producto fue creado satisfactoriamente"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "400":
+          description: "Solicitud incorrecta"
+        "500":
+          description: "Error interno del servidor"
+
+  /api/products/{pid}:
+    get:
+      summary: Obtiene un producto específico basado en su código.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Código único del producto.
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: "El producto fue obtenido satisfactoriamente de la base de datos"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "404":
+          description: "Producto no encontrado"
+        "500":
+          description: "Error interno del servidor"
+
+  /api/products/update/{pid}:
+    put:
+      summary: Actualiza un producto basado en su código.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Código único del producto.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Datos del producto a actualizar
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/requestBodies/UpdateProduct'
+      responses:
+        "200":
+          description: "El producto fue actualizado satisfactoriamente"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        "400":
+          description: "The ID must be a number, Product ID do not exists or You are not the owner of the product with ID."
+        "500":
+          description: "Error interno del servidor"
+
+  /api/products/delete/{pid}:
+    delete:
+      summary: Elimina un producto basado en su código.
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          description: Código único del producto.
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "El producto fue eliminado satisfactoriamente"
+        "400":
+          description: "The product owner is not correct, Product ID do not exists, The ID must be an integer."
+        "500":
+          description: "Error interno del servidor"
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Título del producto
+        description:
+          type: string
+          description: Descripción del producto
+        price:
+          type: number
+          format: float
+          description: Precio del producto
+        code:
+          type: string
+          description: Código único del producto
+        stock:
+          type: number
+          description: Stock del producto
+        category:
+          type: string
+          description: Categoría del producto. Se eligen entre las 4 presentes en una lista desplegable. Por default se asigna la Categoría 4.
+        thumbnail:
+          type: string
+          description: URL de la imagen del producto
+        owner:
+          type: string
+          description: código _id del dueño del producto (persona que realizó la carga)
+
+  requestBodies:
+    NewProduct:
+      description: Datos del nuevo producto
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Título del producto
+              description:
+                type: string
+                description: Descripción del producto
+              price:
+                type: number
+                format: float
+                description: Precio del producto
+              code:
+                type: string
+                description: Código único del producto
+              stock:
+                type: number
+                description: Stock del producto
+              category:
+                type: string
+                description: Categoría del producto
+              thumbnail:
+                type: string
+                description: URL de la imagen del producto
+              owner:
+                type: string
+                description: Dueño del producto.
+
+    UpdateProduct:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Título del producto
+        description:
+          type: string
+          description: Descripción del producto
+        price:
+          type: number
+          format: float
+          description: Precio del producto
+        stock:
+          type: number
+          description: Stock del producto
+        category:
+          type: string
+          description: Categoría del producto
+        thumbnail:
+          type: array
+          description: Miniaturas del producto
