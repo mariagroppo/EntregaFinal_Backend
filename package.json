@@ -4,6 +4,9 @@
   "description": "primera entrega",
   "main": "server.js",
   "type": "module",
+  "engines": {
+    "node": ">=14 <17"
+  },
   "scripts": {
     "test": "mocha test/supertest.test.js",
     "start": "node app.js"
