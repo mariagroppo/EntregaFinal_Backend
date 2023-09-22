@@ -1,5 +1,6 @@
 import { Cart } from "../models/cartModel.js";
 import config from '../../../config/config.js'
+import Product from "../models/productModel.js";
 //import mongoose from "mongoose";
 
 class CartsMongoDB {
@@ -97,7 +98,8 @@ class CartsMongoDB {
                 if (cart.status === 'success') {
                     if (cart.value.user.toString() === userId) {
                         await Cart.deleteOne({
-                            idCart: id
+                            idCart: id,
+                            user: userId
                         })
                         return { status: 'success', message: `Cart ${id} deleted.`, value: true}
                     } else {
@@ -151,12 +153,12 @@ class CartsMongoDB {
             }
             if (findProductInCart) {
                 await Cart.updateOne(
-                    { idCart: cid, "products._id": product._id },
+                    { idCart: cid, user: userId, "products._id": product._id },
                     { $inc: { "products.$.quantity": quantity } })
             
             } else {
                 await Cart.updateOne(
-                    { idCart: cid },
+                    { idCart: cid, user: userId },
                     {
                         $push: {
                             products: {
@@ -175,6 +177,23 @@ class CartsMongoDB {
     
     closeCart = async (cid,userId) => {
         try {
+            const cart = await Cart.find(
+                {idCart: cid, user: userId}
+              )
+            const prodsQty = cart[0].products.length;
+            for (let index = 0; index < prodsQty; index++) {
+                const prod_id = cart[0].products[index]._id;
+                const qty = cart[0].products[index].quantity;
+                const prod = await Product.find(
+                    {_id: prod_id}
+                )
+                const stock = prod[0].stock;
+                const newQty = stock - qty;
+                await Product.updateOne(
+                    {_id: prod_id},
+                    {$set: {"stock": newQty} }
+                    )
+            }
             await Cart.updateOne(
                 {idCart: cid, user: userId.toString()},
                 {$set: {"cartStatus": false } }

@@ -421,10 +421,11 @@ const closeCart = async (req, res) => {
                         let ticketCreate = await ticketsService.save(cart.value, req.session.user);
                         if (ticketCreate.status === 'success') {
                             //Enviar correo con info.
-                            await mailProducts(cart.value, req.session.user)
+                            await mailProducts(cart.value, req.session.user, ticketCreate.value)
                             //RENDERIZO PAGINA DE TICKET
                             res.render('../src/views/partials/ticket.hbs', { 
                                 value: ticketCreate.value,
+                                cart: cart.value,
                                 userStatus: true,
                                 userName,
                                 enabled,
@@ -447,6 +448,7 @@ const closeCart = async (req, res) => {
                     } else {
                         res.render('../src/views/partials/error.hbs', { 
                             message: answer.message,
+                            cart: cart.value,
                             userStatus: true,
                             userName,
                             enabled,

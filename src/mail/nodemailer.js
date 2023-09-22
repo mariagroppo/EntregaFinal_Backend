@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-export async function mailProducts(cart, user) {
+export async function mailProducts(cart, user, ticket) {
     try {
         let detallePedido = ``;
         cart.products.forEach(element => {
@@ -41,7 +41,7 @@ export async function mailProducts(cart, user) {
         `;
         });
         let html = `
-            <h3>Detalles de compra</h3>
+            <h3>Detalles de compra || TICKET N° ${ticket.codeTicket}</h3>
             <p>Nombre: ${user.name}</p>
             <table>
                 <thead>
@@ -57,10 +57,19 @@ export async function mailProducts(cart, user) {
                 </thead>
                 <tbody>
                 ${detallePedido}
+                <tr class="text-center align-middle">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL</th>
+                    <th>$${ticket.amount}</th>
+                    <th></th>
+                </tr>
                 </tbody>
             </table>                
             `
-        let mailTo = "mariagroppo86@gmail.com";
+        let mailTo = user.email;
         let subject= 'Nuevo pedido de ' + user.name;
         let mailOptions = {
             from: process.env.APP_MAIL,

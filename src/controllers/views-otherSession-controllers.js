@@ -79,7 +79,7 @@ const current = async (req,res) =>{
         if (userRole === 'user') {
             change = true
         }
-        res.render('../src/views/partials/user-profile.hbs', { user: user.value, userName, userStatus: true, change, enabled, email})
+        res.render('../src/views/partials/user-profile.hbs', { user: user.value, userName, userStatus: true, change, enabled, myProducts, email})
     } catch (error) {
         res.render('../src/views/partials/error.hbs', { message: "current controller error: " + error, userStatus: true, userName, enabled, myProducts, email})
     }
