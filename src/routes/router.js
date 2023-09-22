@@ -39,7 +39,8 @@ export default class BaseRouter {
             if (!user) return res.redirect('/login');
             if ((policies[0].toUpperCase() === 'ADMIN') && (user.role.toUpperCase() === 'ADMIN')) return next();
             if ((policies[0].toUpperCase() === 'ADMIN') && (user.role.toUpperCase() !== 'ADMIN')) return res.render('../src/views/partials/forbidden.hbs', {userStatus: true, userName: req.session.user.name })
-            if ((policies[0].toUpperCase() === 'PREMIUM') && ((user.role.toUpperCase() === 'PREMIUMUSER') || (user.role.toUpperCase() === 'ADMIN'))) return next();
+            if ((policies[0].toUpperCase() === 'PREMIUM') && (user.role.toUpperCase() === 'ADMIN')) return next();
+            if ((policies[0].toUpperCase() === 'PREMIUM') && (user.role.toUpperCase() === 'PREMIUMUSER')) return next();
             if ((policies[0].toUpperCase() === 'PREMIUM') && (user.role.toUpperCase() !== 'PREMIUMUSER')) return res.render('../src/views/partials/forbidden.hbs', {userStatus: true, userName: req.session.user.name });
             if ((policies[0].toUpperCase() === 'USER')) return next();
             req.user = user;

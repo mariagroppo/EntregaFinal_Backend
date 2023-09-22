@@ -1,16 +1,7 @@
-DUDAS:
-- Como obtengo los errores de passport y los muestro por consola.
-- Al cargar datos de producto para actualizarlos (en frontend) me carga la info de manera parcial.
-- REVISAR LOS RENDERIZADS DE ERRORES. pasar el valor de username
--
-
 1) Revision de /sessions
    Revision de /api/sessions
     A) Además, agregar una propiedad al usuario llamada “last_connection”, la cual deberá modificarse 
 cada vez que el usuario realice un proceso de login y logout (OPCIONAL).
-
-    - Ingresa OK el admin y otra persona registrada.
-    - Registra nuevo usuario OK.
 
 2) Revision de /products
    Revision de /api/products
@@ -28,7 +19,6 @@ cada vez que el usuario realice un proceso de login y logout (OPCIONAL).
     A) Finalizar las vistas pendientes para la realización de flujo completo de compra. 
     NO ES NECESARIO tener una estructura específica de vistas, sólo las que tú consideres necesarias
     para poder llevar a cabo el proceso de compra.
-
 
 4) Revision de /users
    Revision de /api/users
